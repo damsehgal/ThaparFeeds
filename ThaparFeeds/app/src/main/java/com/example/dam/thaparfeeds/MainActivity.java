@@ -9,12 +9,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity
 {
+	private static final String TAG = MainActivity.class.getSimpleName();
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
 	@Override
@@ -27,6 +29,27 @@ public class MainActivity extends AppCompatActivity
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 		mViewPager = (ViewPager) findViewById(R.id.container);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+		{
+			@Override
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+			{
+			}
+			@Override
+			public void onPageSelected(int position)
+			{
+				String first ="QA's";
+				String second = "Society";
+				if (position == 0)
+					getSupportActionBar().setTitle(first);
+				else
+					getSupportActionBar().setTitle(second);
+			}
+			@Override
+			public void onPageScrollStateChanged(int state)
+			{
+			}
+		});
 		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 		fab.setOnClickListener(new View.OnClickListener()
 		{
@@ -63,6 +86,9 @@ public class MainActivity extends AppCompatActivity
 		@Override
 		public Fragment getItem(int position)
 		{
+			Log.e(TAG, "getItem: " +  getPageTitle(position) + " " + position);
+
+
 			return new SocietiesFragment();
 		}
 		@Override

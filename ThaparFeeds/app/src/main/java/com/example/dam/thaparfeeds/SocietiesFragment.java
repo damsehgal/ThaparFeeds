@@ -29,6 +29,7 @@ public class SocietiesFragment extends Fragment
 		societyListView = (ListView) rootView.findViewById(R.id.society_list_view);
 		arrayList = SocietyEvents.getSocietyEvents();
 		societyListView.setAdapter(new SocietyListViewAdapter());
+
 		return rootView;
 	}
 	private class SocietyListViewAdapter extends BaseAdapter
