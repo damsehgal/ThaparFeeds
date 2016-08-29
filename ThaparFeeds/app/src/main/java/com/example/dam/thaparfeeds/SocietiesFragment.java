@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SocietiesFragment extends Fragment
 {
 	private static final String TAG = SocietiesFragment.class.getSimpleName();
@@ -22,15 +19,13 @@ public class SocietiesFragment extends Fragment
 	ArrayList<SocietyEvents.SocietyEvent> arrayList;
 	public SocietiesFragment()
 	{
-		// Required empty public constructor
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState)
 	{
-		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_societies, container, false);
-		Log.e(TAG, "onCreateView: called" );
+		Log.e(TAG, "onCreateView: called");
 		societyListView = (ListView) rootView.findViewById(R.id.society_list_view);
 		arrayList = SocietyEvents.getSocietyEvents();
 		societyListView.setAdapter(new SocietyListViewAdapter());
@@ -38,8 +33,9 @@ public class SocietiesFragment extends Fragment
 	}
 	private class SocietyListViewAdapter extends BaseAdapter
 	{
-		class SocietyHolder{
-			TextView textViewSocietyName , textViewEventName;
+		class SocietyHolder
+		{
+			TextView textViewSocietyName, textViewEventName;
 		}
 		@Override
 		public int getCount()
@@ -63,7 +59,7 @@ public class SocietiesFragment extends Fragment
 			SocietyHolder societyHolder;
 			if (convertView == null)
 			{
-				convertView = layoutInflater.inflate(R.layout.layout_socitety_custom,null);
+				convertView = layoutInflater.inflate(R.layout.layout_socitety_custom, null);
 				societyHolder = new SocietyHolder();
 				societyHolder.textViewSocietyName = (TextView) convertView.findViewById(R.id.society_name);
 				societyHolder.textViewEventName = (TextView) convertView.findViewById(R.id.society_event);
