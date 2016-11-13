@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textColor="#000"
+        android:text="Event Name 1"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="30sp"
+        android:layout_height="wrap_content"
+        android:text="Society Name.     dd-mm-yyyy\n"
+        android:textStyle="italic"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textColor="#000"
+        android:text="Event Name 2"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="30sp"
+        android:layout_height="wrap_content"
+        android:text="Society Name.     dd-mm-yyyy\n"
+        android:textStyle="italic"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textColor="#000"
+        android:text="Event Name 3"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="30sp"
+        android:layout_height="wrap_content"
+        android:text="Society Name.     dd-mm-yyyy\n"
+        android:textStyle="italic"/>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

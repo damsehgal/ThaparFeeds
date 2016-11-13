@@ -41,9 +41,13 @@ public class MainActivity extends AppCompatActivity
 				String first ="QA's";
 				String second = "Society";
 				if (position == 0)
+				{
 					getSupportActionBar().setTitle(first);
+				}
 				else
+				{
 					getSupportActionBar().setTitle(second);
+				}
 			}
 			@Override
 			public void onPageScrollStateChanged(int state)
@@ -87,8 +91,11 @@ public class MainActivity extends AppCompatActivity
 		public Fragment getItem(int position)
 		{
 			Log.e(TAG, "getItem: " +  getPageTitle(position) + " " + position);
-
-
+			if(position == 0)
+			{
+				Log.e(TAG, "getItem: created QA" );
+				return new QuestionFragment();
+			}
 			return new SocietiesFragment();
 		}
 		@Override
@@ -99,6 +106,7 @@ public class MainActivity extends AppCompatActivity
 		@Override
 		public CharSequence getPageTitle(int position)
 		{
+
 			switch (position)
 			{
 				case 0:
