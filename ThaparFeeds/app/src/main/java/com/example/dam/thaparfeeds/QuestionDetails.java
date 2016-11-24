@@ -11,10 +11,10 @@ import java.util.ArrayList;
  */
 public class QuestionDetails
 {
-	ArrayList<Answer> answers ;
+	ArrayList<Answer> answers;
 	ArrayList<Comment> comments;
 	int votes;
-	String question , description, askedBy;
+	String question, description, askedBy;
 	public QuestionDetails(JSONObject jsonObject)
 	{
 		JSONArray comments = null;
@@ -26,7 +26,7 @@ public class QuestionDetails
 				this.comments.add(new Comment(comments.getJSONObject(i)));
 			}
 			JSONArray answers = jsonObject.getJSONArray("answers");
-			for (int i = 0; i < answers.length() ; i++)
+			for (int i = 0; i < answers.length(); i++)
 			{
 				this.answers.add(new Answer(answers.getJSONObject(i)));
 			}
@@ -40,8 +40,17 @@ public class QuestionDetails
 			e.printStackTrace();
 		}
 	}
+
 	public class Comment
 	{
+		public String getUser()
+		{
+			return user;
+		}
+		public String getComment()
+		{
+			return comment;
+		}
 		String user, comment;
 		public Comment(JSONObject jsonObject)
 		{
@@ -54,13 +63,25 @@ public class QuestionDetails
 			{
 				e.printStackTrace();
 			}
-
 		}
 	}
-	public class  Answer
+
+	public class Answer
 	{
-		ArrayList <Comment> comments;
-		String user , answer;
+		ArrayList<Comment> comments;
+		String user, answer;
+		public ArrayList<Comment> getComments()
+		{
+			return comments;
+		}
+		public String getUser()
+		{
+			return user;
+		}
+		public String getAnswer()
+		{
+			return answer;
+		}
 		public Answer(JSONObject jsonObject)
 		{
 			try
