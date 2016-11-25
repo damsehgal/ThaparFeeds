@@ -4,7 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,7 +34,7 @@ public class QuestionDetailActivity extends AppCompatActivity
 	ListView comments, answers;
 	ArrayList<QuestionDetails.Comment> commentsArrayList;
 	ArrayList<QuestionDetails.Answer> answerArrayList;
-
+	QuestionDetails currentQuestion;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -38,43 +43,48 @@ public class QuestionDetailActivity extends AppCompatActivity
 		Intent intentFromPrevious = getIntent();
 		id = intentFromPrevious.getIntExtra("id of question", 0);
 		comments = (ListView) findViewById(R.id.question_details_question_comment);
-		QuestionDetails currentQuestion = getQuestion();
+		answers = (ListView) findViewById(R.id.question_details_all_answers);
+		getQuestion();
 		//commentsArrayList = currentQuestion.comments;
 		//
+
 	}
-	public QuestionDetails getQuestion()
+	public void getQuestion()
 	{
-		Log.e(TAG, "fill: " + "called");
-		final QuestionDetails[] questionDetails = new QuestionDetails[1];
-		RequestQueue q = Volley.newRequestQueue(this);
-		final JSONObject[] jsonObject = new JSONObject[1];
-		String url = "https://thaparfeeds.herokuapp.com/questions/" + id;
-		StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>()
+		TaskDone2 taskDone = new TaskDone2("https://thaparfeeds.herokuapp.com/questions/"+id,getApplicationContext());
+		final QuestionDetails[] temp = new QuestionDetails[1];
+
+		taskDone.getString(new TaskDone2.VolleyCallBack()
 		{
 			@Override
-			public void onResponse(String response)
+			public void onSuccess(String result)
 			{
+				Log.e(TAG, "onSuccess: " + result );
 				try
 				{
-					jsonObject[0] = new JSONObject(response);
-					questionDetails[0] = new QuestionDetails(jsonObject[0]);
-					commentsArrayList = questionDetails[0].comments;
-					comments.setAdapter(new CommentsAdapter(getApplicationContext(),commentsArrayList));
+					final JSONObject json = new JSONObject(result);
+					currentQuestion = new QuestionDetails();
+					currentQuestion.setOnArrayListFilled(new QuestionDetails.OnArrayListFilled()
+					{
+						@Override
+						public JSONObject onArrayListSet()
+						{
+							return json;
+						}
+					});
+					commentsArrayList = currentQuestion.comments;
+					answerArrayList = currentQuestion.answers;
+					for (int i = 0 ; i< commentsArrayList.size() ;i++)
+						Log.e(TAG, "onSuccess: " + commentsArrayList.get(i).getComment());
+					comments.setAdapter(new CommentsAdapter(commentsArrayList,getApplicationContext()));
 				}
 				catch (JSONException e)
 				{
 					e.printStackTrace();
 				}
 			}
-		}, new Response.ErrorListener()
-		{
-			@Override
-			public void onErrorResponse(VolleyError error)
-			{
-				Log.e(TAG, "onErrorResponse: " + error.toString());
-			}
 		});
-		q.add(stringRequest);
-		return questionDetails[0];
+		Log.e(TAG, "getQuestion: here"  );
+
 	}
 }

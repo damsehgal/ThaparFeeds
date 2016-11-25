@@ -23,7 +23,7 @@ public class  CommentsAdapter extends BaseAdapter
 	{
 		TextView comment, username;
 	}
-	public CommentsAdapter(Context context , ArrayList<QuestionDetails.Comment> arrayList)
+	public CommentsAdapter(ArrayList<QuestionDetails.Comment> arrayList , Context context)
 	{
 		this.arrayList = arrayList;
 		this.context = context;
