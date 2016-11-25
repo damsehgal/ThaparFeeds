@@ -84,9 +84,9 @@ quis nostrud exercitation ullamco laboris nisi est laborum."
         android:layout_margin="5dp"
         android:text="ANSWERS"
         />
-    <ListView
+    <ExpandableListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/question_details_all_answers">
-    </ListView>
+    </ExpandableListView>
 </LinearLayout>

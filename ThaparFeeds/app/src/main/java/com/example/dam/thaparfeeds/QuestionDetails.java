@@ -30,20 +30,21 @@ public class QuestionDetails
 		try
 		{
 			Log.e(TAG, "set: " +jsonObject.toString() );
-			JSONArray comments =  jsonObject.getJSONArray("comments");
-			for (int i = 0; i < comments.length(); i++)
-			{
-				this.comments.add(new Comment(comments.getJSONObject(i)));
-			}
-			JSONArray answers = jsonObject.getJSONArray("answers");
-			for (int i = 0; i < answers.length(); i++)
-			{
-				this.answers.add(new Answer(answers.getJSONObject(i)));
-			}
+
 			votes = jsonObject.getInt("votes");
 			question = jsonObject.getString("question");
 			description = jsonObject.getString("description");
 			askedBy = jsonObject.getString("asked_by");
+			JSONArray comments2 =  jsonObject.getJSONArray("comments");
+			for (int i = 0; i < comments2.length(); i++)
+			{
+				comments.add(new Comment(comments2.getJSONObject(i)));
+			}
+			JSONArray answers2 = jsonObject.getJSONArray("answers");
+			for (int i = 0; i < answers2.length(); i++)
+			{
+				answers.add(new Answer(answers2.getJSONObject(i)));
+			}
 		}
 		catch (Exception e)
 		{
@@ -91,6 +92,7 @@ public class QuestionDetails
 	{
 		ArrayList<Comment> comments;
 		String user, answer;
+		int votes;
 		public ArrayList<Comment> getComments()
 		{
 			return comments;
@@ -105,10 +107,12 @@ public class QuestionDetails
 		}
 		public Answer(JSONObject jsonObject)
 		{
+			comments = new ArrayList<>();
 			try
 			{
 				user = jsonObject.getString("user");
 				answer = jsonObject.getString("answer");
+				votes = jsonObject.getInt("votes");
 				JSONArray comments = jsonObject.getJSONArray("comments");
 				for (int i = 0; i < comments.length(); i++)
 				{
