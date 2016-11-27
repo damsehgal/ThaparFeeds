@@ -15,9 +15,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="UserName"
+        android:id="@+id/username"
         android:textSize="30dp"/>
     <EditText
         android:layout_width="wrap_content"
+        android:id="@+id/password"
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textWebPassword"
@@ -25,9 +27,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_login"
         android:text="login"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_signup"
         android:text="SignUp"/>
 </LinearLayout>

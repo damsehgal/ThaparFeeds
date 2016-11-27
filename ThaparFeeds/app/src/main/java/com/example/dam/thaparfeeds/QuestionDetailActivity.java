@@ -5,15 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,6 +35,8 @@ public class QuestionDetailActivity extends AppCompatActivity
 	private static final String TAG = QuestionDetailActivity.class.getSimpleName();
 	int id;
 	ImageView upvote, downvote;
+	Button addAnswer , addComment;
+
 	TextView voteCount, question, description, askedBy;
 	ListView commentsListView;
 	ExpandableListView  answersListView;
@@ -48,6 +53,30 @@ public class QuestionDetailActivity extends AppCompatActivity
 		question = (TextView) findViewById(R.id.question_details_question);
 		voteCount = (TextView) findViewById(R.id.question_details_votes);
 		description = (TextView) findViewById(R.id.question_details_description);
+		addComment = (Button) findViewById(R.id.add_comment_on_question);
+		addComment.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				Intent intent = new Intent(getApplicationContext(),AddCommentOnComment.class);
+				intent.putExtra("question_id",id);
+				startActivity(intent);
+				finish();
+
+			}
+		});
+		addAnswer = (Button) findViewById(R.id.add_answer);
+		addAnswer.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				Intent intent = new Intent(getApplicationContext(),AddAnswerActivity.class);
+				intent.putExtra(AddAnswerActivity.GET_ANSWER,id);
+				startActivity(intent);
+			}
+		});
 		askedBy = (TextView) findViewById(R.id.question_details_user_name);
 		commentsListView = (ListView) findViewById(R.id.question_details_question_comment);
 		answersListView = (ExpandableListView) findViewById(R.id.question_details_all_answers);
@@ -88,9 +117,6 @@ public class QuestionDetailActivity extends AppCompatActivity
 					for (int i = 0 ; i< commentsArrayList.size() ;i++)
 						Log.e(TAG, "onSuccess: " + commentsArrayList.get(i).getComment());
 					commentsListView.setAdapter(new CommentsAdapter(commentsArrayList,getApplicationContext()));
-					/*Log.e(TAG, "onSuccess: " + answerArrayList.size() );
-					for (int i = 0 ; i < answerArrayList.size(); ++i)
-						Log.e(TAG, "onSuccess: " + answerArrayList.get(i).answer );*/
 					answersListView.setAdapter(new AnswerExpandableListViewAdapter());
 
 				}
@@ -108,6 +134,7 @@ public class QuestionDetailActivity extends AppCompatActivity
 		{
 			ImageView answerUpVote , answerDownVote;
 			TextView votes ,answer , username;
+			//Button addCommentOnAnswer;
 		}
 		public class CommentView
 		{
@@ -150,19 +177,20 @@ public class QuestionDetailActivity extends AppCompatActivity
 			return false;
 		}
 		@Override
-		public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent)
+		public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent)
 		{
 			LayoutInflater li = getLayoutInflater();
-			AnswerHolder answerHolder;
+			final AnswerHolder answerHolder;
 			if (convertView == null)
 			{
 				convertView = li.inflate(R.layout.custom_answer_layout,null);
 				answerHolder = new AnswerHolder();
 				answerHolder.answer = (TextView) convertView.findViewById(R.id.answer_answer);
-				answerHolder.answerDownVote = (ImageView) convertView.findViewById(R.id.answer_down_vote);
+				//answerHolder.answerDownVote = (ImageView) convertView.findViewById(R.id.answer_down_vote);
 				answerHolder.answerUpVote = (ImageView) convertView.findViewById(R.id.answer_up_vote);
 				answerHolder.votes = (TextView) convertView.findViewById(R.id.answer_question_details_votes);
 				answerHolder.username = (TextView) convertView.findViewById(R.id.answer_user_name);
+			//	answerHolder.addCommentOnAnswer = (Button) convertView.findViewById(R.id.add_comment_on_answer);
 				convertView.setTag(answerHolder);
 			}
 			else
@@ -171,16 +199,66 @@ public class QuestionDetailActivity extends AppCompatActivity
 			}
 			Log.e(TAG, "getGroupView: " + answerArrayList.get(groupPosition).user + " " + answerHolder.username.getHint());
 			answerHolder.username.setText(answerArrayList.get(groupPosition).user);
-			String votes = Integer.toString(answerArrayList.get(groupPosition).votes);
-			answerHolder.votes.setText(votes);
-			answerHolder.answer.setText(answerArrayList.get(groupPosition).answer);
+			final String[] votes = {Integer.toString(answerArrayList.get(groupPosition).votes)};
+			answerHolder.votes.setText(votes[0]);
+			answerHolder.answer.setText(answerArrayList.get(groupPosition).answer);/*
+			answerHolder.addCommentOnAnswer.setOnClickListener(new View.OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+
+				}
+			});*/
+			final boolean[] flag = {false};
+
+
+			answerHolder.answerUpVote.setOnClickListener(new View.OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					if (!flag[0])
+					{
+						flag[0] = true;
+						answerArrayList.get(groupPosition).votes++;
+						String temp =  Integer.toString(answerArrayList.get(groupPosition).votes);
+						answerHolder.votes.setText(temp);
+					}
+					else
+					{
+						Toast.makeText(getApplicationContext(), "You already voted", Toast.LENGTH_SHORT).show();
+					}
+				}
+			});
+
+			/*answerHolder.answerDownVote.setOnClickListener(new View.OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					if (!flag[0])
+					{
+						flag[0] = true;
+						answerArrayList.get(groupPosition).votes--;
+						String temp =  Integer.toString(answerArrayList.get(groupPosition).votes);
+						answerHolder.votes.setText(temp);
+					}
+					else
+					{
+						Toast.makeText(getApplicationContext(), "You already voted", Toast.LENGTH_SHORT).show();
+					}
+				}
+			});*/
 			return convertView;
+
 		}
 		@Override
-		public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent)
+		public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent)
 		{
 			LayoutInflater li = getLayoutInflater();
 			CommentView commentView ;
+			Log.e(TAG, "getChildView: " );
 			if (convertView == null)
 			{
 				convertView = li.inflate(R.layout.custom_comment_layout, null);
@@ -196,6 +274,33 @@ public class QuestionDetailActivity extends AppCompatActivity
 			Log.e(TAG, "getChildView: " + answerArrayList.get(groupPosition).comments.get(childPosition).user );
 			commentView.username.setText( answerArrayList.get(groupPosition).comments.get(childPosition).user);
 			commentView.comment.setText(answerArrayList.get(groupPosition).comments.get(childPosition).comment);
+			commentView.username.setOnClickListener(new View.OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					Intent intent = new Intent(getApplicationContext(),AddCommentOnAnswerActivity.class);
+					intent.putExtra("question_id",id);
+					intent.putExtra("answer_id",answerArrayList.get(groupPosition).id2);
+					Log.e(TAG, "onClick: " + answerArrayList.get(groupPosition).id2);
+					startActivity(intent);
+					finish();
+				}
+			});
+			commentView.comment.setOnClickListener(new View.OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+
+					Intent intent = new Intent(getApplicationContext(),AddCommentOnAnswerActivity.class);
+					intent.putExtra("question_id",id);
+					intent.putExtra("answer_id",answerArrayList.get(groupPosition).id2);
+					Log.e(TAG, "onClick: " + answerArrayList.get(groupPosition).id2);
+					startActivity(intent);
+					finish();
+				}
+			});
 			return convertView;
 		}
 		@Override

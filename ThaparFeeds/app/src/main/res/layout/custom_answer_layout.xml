@@ -28,21 +28,18 @@
                 android:hint="35"
                 android:textAlignment="center"
                 android:textSize="30sp"/>
-
+<!--
             <ImageView
                 android:id="@+id/answer_down_vote"
                 android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:src="@drawable/down_inactive"/>
+                android:layout_height="0dp"
+                android:src="@drawable/down_inactive"/>-->
         </LinearLayout>
         <TextView
             android:id="@+id/answer_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi est laborum."
             android:textSize="15sp"
             />
         </LinearLayout>
@@ -53,17 +50,17 @@ quis nostrud exercitation ullamco laboris nisi est laborum."
         android:id="@+id/answer_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_gravity="end"
         android:hint="Asked by username"/>
-
-    <!--<ListView
-        android:id="@+id/answer_comment"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"/>
--->
-    <View
+    <!--<Button
+        android:layout_width="35dp"
+        android:id="@+id/add_comment_on_answer"
+        android:text="+"
+        android:layout_height="35dp"/>
+    -->    <!--<View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_margin="5dp"
-        android:background="#888"/>
+        android:background="#888"/>-->
 </LinearLayout>

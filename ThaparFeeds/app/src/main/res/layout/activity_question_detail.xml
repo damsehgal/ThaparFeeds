@@ -2,91 +2,111 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-
               android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            android:textAlignment="center">
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="90dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
 
-            <ImageView
-                android:id="@+id/up_vote"
-                android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:src="@drawable/up_inactive"/>
+                android:textAlignment="center">
+
+                <ImageView
+                    android:id="@+id/up_vote"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/up_inactive"/>
+
+                <TextView
+                    android:id="@+id/question_details_votes"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+
+                    android:textAlignment="center"
+                    android:textSize="25sp"/>
+
+                <ImageView
+                    android:id="@+id/down_vote"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/down_inactive"/>
+            </LinearLayout>
 
             <TextView
-                android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:hint="35"
-                android:id="@+id/question_details_votes"
-                android:textAlignment="center"
-                android:textSize="30sp"/>
+                android:id="@+id/question_details_question"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:gravity="center"
 
-            <ImageView
-                android:id="@+id/down_vote"
-                android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:src="@drawable/down_inactive"/>
+                android:maxLines="3"
+                android:textSize="25sp"
+                />
         </LinearLayout>
 
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/question_details_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="15sp"/>
+        </ScrollView>
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/question_details_question"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:hint="How to use Android studio?"
-            android:maxLines="3"
-            android:textSize="25sp"
+            android:id="@+id/question_details_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:id="@+id/add_comment_on_question"/>
+            <ListView
+                android:id="@+id/question_details_question_comment"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_margin="5dp"
+            android:background="#888"/>
+        <ExpandableListView
+            android:id="@+id/question_details_all_answers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ExpandableListView>
+
+
+        <Button
+            android:id="@+id/add_answer"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add answer"
+            android:translationZ="10dp"/>
+
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:id="@+id/question_details_description"
-        android:hint="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi est laborum."
-        android:textSize="15sp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:hint="Asked by username"
-        android:id="@+id/question_details_user_name"/>
-    <ListView
-        android:layout_height="40dp"
-        android:layout_width="wrap_content"
-        android:id="@+id/question_details_question_comment"/>
-    <View
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#888"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_margin="5dp"
-        android:text="ANSWERS"
-        />
-    <ExpandableListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/question_details_all_answers">
-    </ExpandableListView>
 </LinearLayout>

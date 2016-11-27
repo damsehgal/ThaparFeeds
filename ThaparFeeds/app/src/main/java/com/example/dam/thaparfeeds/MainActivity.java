@@ -1,5 +1,6 @@
 package com.example.dam.thaparfeeds;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity
 {
+	public static String user_id;
 	private static final String TAG = MainActivity.class.getSimpleName();
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		final Intent intent = getIntent();
+		user_id = intent.getStringExtra("USER_ID");
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -60,8 +64,9 @@ public class MainActivity extends AppCompatActivity
 			@Override
 			public void onClick(View view)
 			{
-				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-					.setAction("Action", null).show();
+				Intent intent1 = new Intent(getApplicationContext(),AddQuestionActivity.class);
+				startActivity(intent1);
+//				finish();
 			}
 		});
 	}

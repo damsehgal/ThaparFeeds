@@ -92,6 +92,7 @@ public class QuestionDetails
 	{
 		ArrayList<Comment> comments;
 		String user, answer;
+		int id2;
 		int votes;
 		public ArrayList<Comment> getComments()
 		{
@@ -110,6 +111,8 @@ public class QuestionDetails
 			comments = new ArrayList<>();
 			try
 			{
+				id2 = jsonObject.getInt("id");
+				Log.e(TAG, "Answer: " +id2 );
 				user = jsonObject.getString("user");
 				answer = jsonObject.getString("answer");
 				votes = jsonObject.getInt("votes");
