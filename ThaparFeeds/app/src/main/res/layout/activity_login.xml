@@ -10,30 +10,56 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:gravity="center"
+    android:background="#3b5998"
     tools:context="com.example.dam.thaparfeeds.LoginActivity">
-    <EditText
+
+    <LinearLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="UserName"
-        android:singleLine="true"
-        android:id="@+id/username"
-        android:textSize="30dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:id="@+id/password"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:singleLine="true"
-        android:inputType="textWebPassword"
-        android:textSize="30dp"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_login"
-        android:text="login"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_signup"
-        android:text="SignUp"/>
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:background="@drawable/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="UserName"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:singleLine="true"
+            android:id="@+id/username"
+            android:textSize="15dp"/>
+        <EditText
+            android:background="@drawable/edit_text"
+            android:layout_width="match_parent"
+            android:id="@+id/password"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:hint="Password"
+            android:singleLine="true"
+            android:inputType="textWebPassword"
+            android:textSize="15dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/round_button"
+            android:id="@+id/btn_login"
+            android:text="login"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textColor="#FFFFFF"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+            android:id="@+id/btn_signup"
+            android:text="SignUp"/>
+
+
+    </LinearLayout>
+
 </LinearLayout>
