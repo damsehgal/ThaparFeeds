@@ -21,12 +21,14 @@ public class MainActivity extends AppCompatActivity
 	private static final String TAG = MainActivity.class.getSimpleName();
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
+	public FloatingActionButton floatingActionButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		final Intent intent = getIntent();
+		floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
 		user_id = intent.getStringExtra("USER_ID");
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
@@ -47,26 +49,28 @@ public class MainActivity extends AppCompatActivity
 				if (position == 0)
 				{
 					getSupportActionBar().setTitle(first);
+					floatingActionButton.show();
 				}
 				else
 				{
 					getSupportActionBar().setTitle(second);
+					floatingActionButton.hide();
 				}
 			}
 			@Override
 			public void onPageScrollStateChanged(int state)
 			{
+
 			}
 		});
-		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-		fab.setOnClickListener(new View.OnClickListener()
+		floatingActionButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View view)
 			{
 				Intent intent1 = new Intent(getApplicationContext(),AddQuestionActivity.class);
 				startActivity(intent1);
-//				finish();
+				finish();
 			}
 		});
 	}

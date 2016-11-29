@@ -30,7 +30,12 @@ public class AddQuestionActivity extends AppCompatActivity
 			@Override
 			public void onClick(View v)
 			{
-				HashMap <String , String> hashMap = new HashMap<String, String>();
+				if (question.getText().toString().isEmpty() || question.getText().toString().length() < 10  || description.getText().toString().isEmpty() || description.getText().toString().length() < 10) 		{
+					Toast.makeText(AddQuestionActivity.this, "question or description too short", Toast.LENGTH_SHORT).show();
+				}
+				else
+				{HashMap <String , String> hashMap = new HashMap<String, String>();
+
 				hashMap.put("question", question.getText().toString());
 				hashMap.put("description", description.getText().toString());
 				hashMap.put("name",MainActivity.user_id);
@@ -51,7 +56,7 @@ public class AddQuestionActivity extends AppCompatActivity
 					}
 				});
 				postRequestSend.execute();
-			}
+			}}
 		});
 	}
 }

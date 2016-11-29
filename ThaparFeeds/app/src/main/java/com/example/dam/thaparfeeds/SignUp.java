@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class SignUp extends AppCompatActivity
 {
-	EditText username , password , repPassword;
+	EditText username , password , repPassword ,name;
 	Button login , signup;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -20,6 +20,7 @@ public class SignUp extends AppCompatActivity
 		username = (EditText) findViewById(R.id.signup_username);
 		password = (EditText) findViewById(R.id.signup_password);
 		repPassword = (EditText) findViewById(R.id.repeat_password);
+		name = (EditText) findViewById(R.id.name_user);
 		login = (Button) findViewById(R.id.btn_login_2);
 		signup = (Button) findViewById(R.id.btn_signup_2);
 		login.setOnClickListener(new View.OnClickListener()
@@ -38,9 +39,9 @@ public class SignUp extends AppCompatActivity
 			@Override
 			public void onClick(View v)
 			{
-					if (password.getText().toString().equals(repPassword.getText().toString()))
+					if (password.getText().toString().equals(repPassword.getText().toString()) || username.getText().toString().equals("") ||username.getText().toString().isEmpty() || password.getText().toString().equals("") ||password.getText().toString().isEmpty() ||name.getText().toString().equals("") ||name.getText().toString().isEmpty())
 					{
-						TaskDone2 taskDone2 = new TaskDone2(" https://thaparfeeds.herokuapp.com/signup/" + username.getText().toString()+ "/" + password.getText().toString()+"/username",getApplicationContext());
+						TaskDone2 taskDone2 = new TaskDone2(" https://thaparfeeds.herokuapp.com/signup/" + username.getText().toString()+ "/" + password.getText().toString()+"/" + name.getText().toString(),getApplicationContext());
 						taskDone2.getString(new TaskDone2.VolleyCallBack()
 						{
 							@Override
@@ -62,7 +63,7 @@ public class SignUp extends AppCompatActivity
 					}
 					else
 					{
-						Toast.makeText(SignUp.this, "Passwords not match", Toast.LENGTH_SHORT).show();
+						Toast.makeText(SignUp.this, "Try Again", Toast.LENGTH_SHORT).show();
 					}
 			}
 		});

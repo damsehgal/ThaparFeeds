@@ -42,6 +42,7 @@ public class QuestionDetailActivity extends AppCompatActivity
 	ExpandableListView  answersListView;
 	ArrayList<QuestionDetails.Comment> commentsArrayList;
 	ArrayList<QuestionDetails.Answer> answerArrayList;
+	public static boolean flag = false;
 	QuestionDetails currentQuestion;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -186,7 +187,7 @@ public class QuestionDetailActivity extends AppCompatActivity
 				convertView = li.inflate(R.layout.custom_answer_layout,null);
 				answerHolder = new AnswerHolder();
 				answerHolder.answer = (TextView) convertView.findViewById(R.id.answer_answer);
-				//answerHolder.answerDownVote = (ImageView) convertView.findViewById(R.id.answer_down_vote);
+				answerHolder.answerDownVote = (ImageView) convertView.findViewById(R.id.answer_down_vote);
 				answerHolder.answerUpVote = (ImageView) convertView.findViewById(R.id.answer_up_vote);
 				answerHolder.votes = (TextView) convertView.findViewById(R.id.answer_question_details_votes);
 				answerHolder.username = (TextView) convertView.findViewById(R.id.answer_user_name);
@@ -201,16 +202,7 @@ public class QuestionDetailActivity extends AppCompatActivity
 			answerHolder.username.setText(answerArrayList.get(groupPosition).user);
 			final String[] votes = {Integer.toString(answerArrayList.get(groupPosition).votes)};
 			answerHolder.votes.setText(votes[0]);
-			answerHolder.answer.setText(answerArrayList.get(groupPosition).answer);/*
-			answerHolder.addCommentOnAnswer.setOnClickListener(new View.OnClickListener()
-			{
-				@Override
-				public void onClick(View v)
-				{
-
-				}
-			});*/
-			final boolean[] flag = {false};
+			answerHolder.answer.setText(answerArrayList.get(groupPosition).answer);
 
 
 			answerHolder.answerUpVote.setOnClickListener(new View.OnClickListener()
@@ -218,9 +210,9 @@ public class QuestionDetailActivity extends AppCompatActivity
 				@Override
 				public void onClick(View v)
 				{
-					if (!flag[0])
+					if (!flag)
 					{
-						flag[0] = true;
+						flag = true;
 						answerArrayList.get(groupPosition).votes++;
 						String temp =  Integer.toString(answerArrayList.get(groupPosition).votes);
 						answerHolder.votes.setText(temp);
@@ -232,14 +224,14 @@ public class QuestionDetailActivity extends AppCompatActivity
 				}
 			});
 
-			/*answerHolder.answerDownVote.setOnClickListener(new View.OnClickListener()
+			answerHolder.answerDownVote.setOnClickListener(new View.OnClickListener()
 			{
 				@Override
 				public void onClick(View v)
 				{
-					if (!flag[0])
+					if (!flag)
 					{
-						flag[0] = true;
+						flag = true;
 						answerArrayList.get(groupPosition).votes--;
 						String temp =  Integer.toString(answerArrayList.get(groupPosition).votes);
 						answerHolder.votes.setText(temp);
@@ -249,7 +241,7 @@ public class QuestionDetailActivity extends AppCompatActivity
 						Toast.makeText(getApplicationContext(), "You already voted", Toast.LENGTH_SHORT).show();
 					}
 				}
-			});*/
+			});
 			return convertView;
 
 		}

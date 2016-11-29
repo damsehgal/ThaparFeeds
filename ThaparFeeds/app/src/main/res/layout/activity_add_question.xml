@@ -13,7 +13,8 @@
     <EditText
         android:layout_width="match_parent"
         android:id="@+id/add_question_question"
-        android:hint="question"
+        android:hint="Question"
+
         android:layout_height="wrap_content"/>
     <EditText
         android:layout_width="match_parent"

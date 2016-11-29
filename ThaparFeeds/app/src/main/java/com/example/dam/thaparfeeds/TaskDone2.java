@@ -1,6 +1,7 @@
 package com.example.dam.thaparfeeds;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +36,7 @@ public class TaskDone2
 			@Override
 			public void onErrorResponse(VolleyError error)
 			{
+				Toast.makeText(context, "check Internet connection", Toast.LENGTH_SHORT).show();
 			}
 		}));
 	}

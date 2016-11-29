@@ -28,12 +28,11 @@
                 android:hint="35"
                 android:textAlignment="center"
                 android:textSize="30sp"/>
-<!--
             <ImageView
                 android:id="@+id/answer_down_vote"
                 android:layout_width="40dp"
                 android:layout_height="0dp"
-                android:src="@drawable/down_inactive"/>-->
+                android:src="@drawable/down_inactive"/>
         </LinearLayout>
         <TextView
             android:id="@+id/answer_answer"
