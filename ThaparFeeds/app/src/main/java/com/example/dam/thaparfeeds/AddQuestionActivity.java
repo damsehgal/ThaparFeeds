@@ -30,7 +30,7 @@ public class AddQuestionActivity extends AppCompatActivity
 			@Override
 			public void onClick(View v)
 			{
-				if (question.getText().toString().isEmpty() || question.getText().toString().length() < 10  || description.getText().toString().isEmpty() || description.getText().toString().length() < 10) 		{
+				if (question.getText().toString().isEmpty() || question.getText().toString().length() < 20  || description.getText().toString().isEmpty() || description.getText().toString().length() < 20) 		{
 					Toast.makeText(AddQuestionActivity.this, "question or description too short", Toast.LENGTH_SHORT).show();
 				}
 				else

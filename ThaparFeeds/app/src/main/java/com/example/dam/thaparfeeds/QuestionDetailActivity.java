@@ -43,6 +43,7 @@ public class QuestionDetailActivity extends AppCompatActivity
 	ArrayList<QuestionDetails.Comment> commentsArrayList;
 	ArrayList<QuestionDetails.Answer> answerArrayList;
 	public static boolean flag = false;
+	public static boolean flag2 = false;
 	QuestionDetails currentQuestion;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -54,6 +55,43 @@ public class QuestionDetailActivity extends AppCompatActivity
 		question = (TextView) findViewById(R.id.question_details_question);
 		voteCount = (TextView) findViewById(R.id.question_details_votes);
 		description = (TextView) findViewById(R.id.question_details_description);
+		upvote = (ImageView) findViewById(R.id.up_vote);
+		downvote = (ImageView) findViewById(R.id.down_vote);
+		upvote.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				if (!flag2)
+				{
+					String temp  =""+(Integer.parseInt(voteCount.getText().toString())+1);
+					voteCount.setText(temp);
+					flag2 = true;
+				}
+				else
+				{
+					Toast.makeText(QuestionDetailActivity.this, "You already upvoted", Toast.LENGTH_SHORT).show();
+				}
+
+			}
+		});
+		downvote.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				if (!flag2)
+				{
+					String temp  =""+(Integer.parseInt(voteCount.getText().toString())+1);
+					voteCount.setText(temp);
+					flag2 = true;
+				}
+				else
+				{
+					Toast.makeText(QuestionDetailActivity.this, "You already upvoted", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 		addComment = (Button) findViewById(R.id.add_comment_on_question);
 		addComment.setOnClickListener(new View.OnClickListener()
 		{
@@ -266,15 +304,19 @@ public class QuestionDetailActivity extends AppCompatActivity
 			Log.e(TAG, "getChildView: " + answerArrayList.get(groupPosition).comments.get(childPosition).user );
 			commentView.username.setText( answerArrayList.get(groupPosition).comments.get(childPosition).user);
 			commentView.comment.setText(answerArrayList.get(groupPosition).comments.get(childPosition).comment);
+
 			commentView.username.setOnClickListener(new View.OnClickListener()
 			{
+
 				@Override
 				public void onClick(View v)
 				{
+
+
 					Intent intent = new Intent(getApplicationContext(),AddCommentOnAnswerActivity.class);
 					intent.putExtra("question_id",id);
-					intent.putExtra("answer_id",answerArrayList.get(groupPosition).id2);
-					Log.e(TAG, "onClick: " + answerArrayList.get(groupPosition).id2);
+					intent.putExtra("answer_id",groupPosition+2);
+					Log.e(TAG, "onClick: " + (groupPosition+2));
 					startActivity(intent);
 					finish();
 				}
@@ -287,7 +329,7 @@ public class QuestionDetailActivity extends AppCompatActivity
 
 					Intent intent = new Intent(getApplicationContext(),AddCommentOnAnswerActivity.class);
 					intent.putExtra("question_id",id);
-					intent.putExtra("answer_id",answerArrayList.get(groupPosition).id2);
+					intent.putExtra("answer_id",groupPosition+1);
 					Log.e(TAG, "onClick: " + answerArrayList.get(groupPosition).id2);
 					startActivity(intent);
 					finish();

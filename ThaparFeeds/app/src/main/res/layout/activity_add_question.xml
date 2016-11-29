@@ -8,22 +8,31 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#3b5998"
     android:orientation="vertical"
     tools:context="com.example.dam.thaparfeeds.AddQuestionActivity">
     <EditText
         android:layout_width="match_parent"
         android:id="@+id/add_question_question"
         android:hint="Question"
-
-        android:layout_height="wrap_content"/>
+        android:background="@drawable/edit_text"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:layout_height="40dp"/>
     <EditText
         android:layout_width="match_parent"
         android:id="@+id/add_question_description"
         android:hint="description"
-        android:layout_height="wrap_content"/>
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:background="@drawable/edit_text"
+        android:layout_height="40dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
         android:id="@+id/add_question_send"
+        android:background="@drawable/round_button"
         android:text="SEND"/>
 </LinearLayout>

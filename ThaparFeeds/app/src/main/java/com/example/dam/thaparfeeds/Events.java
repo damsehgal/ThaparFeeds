@@ -2,6 +2,7 @@ package com.example.dam.thaparfeeds;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -82,6 +83,10 @@ public class Events
 					for (int i = 0 ;i <  events.length();i++)
 					{
 						arrayList.add(new Event(events.getJSONObject(i),context));
+					}
+					if (arrayList.size() == 0)
+					{
+						Toast.makeText(context, "No events from this society", Toast.LENGTH_SHORT).show();
 					}
 					s.notifyDataSetChanged();
 				}

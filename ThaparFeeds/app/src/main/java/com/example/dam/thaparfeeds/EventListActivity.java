@@ -44,6 +44,7 @@ public class EventListActivity extends AppCompatActivity
 		EventsListViewAdapter eventsListViewAdapter = new EventsListViewAdapter();
 
 		arrayList = Events.getEvents(eventsListViewAdapter);
+
 		eventsListView.setAdapter(eventsListViewAdapter);
 		eventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
 		{

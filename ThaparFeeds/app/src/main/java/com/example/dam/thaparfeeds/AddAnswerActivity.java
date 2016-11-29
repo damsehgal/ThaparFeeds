@@ -32,25 +32,31 @@ public class AddAnswerActivity extends AppCompatActivity
 			@Override
 			public void onClick(View v)
 			{
-				HashMap <String,String> hashMap = new HashMap<String, String>();
-				hashMap.put("answer",answer.getText().toString());
-				hashMap.put("name",MainActivity.user_id);
-
-				PostRequestSend postRequestSend = new PostRequestSend("https://thaparfeeds.herokuapp.com/answers/"+question_id+"/",hashMap);
-				postRequestSend.setTaskDoneListener(new PostRequestSend.TaskDoneListener()
+				if (answer.getText().toString().isEmpty() || answer.length() < 20)
 				{
-					@Override
-					public String onTaskDone(String str) throws JSONException
+					Toast.makeText(AddAnswerActivity.this, "Short answer", Toast.LENGTH_SHORT).show();
+				}
+				else
+				{
+					HashMap<String, String> hashMap = new HashMap<String, String>();
+					hashMap.put("answer", answer.getText().toString());
+					hashMap.put("name", MainActivity.user_id);
+					PostRequestSend postRequestSend = new PostRequestSend("https://thaparfeeds.herokuapp.com/answers/" + question_id + "/", hashMap);
+					postRequestSend.setTaskDoneListener(new PostRequestSend.TaskDoneListener()
 					{
-						Toast.makeText(AddAnswerActivity.this, "Successful", Toast.LENGTH_SHORT).show();
-						Intent intent = new Intent(getApplicationContext(),QuestionDetailActivity.class);
-						intent.putExtra("id of question",question_id);
-						startActivity(intent);
-						finish();
-						return null;
-					}
-				});
-				postRequestSend.execute();
+						@Override
+						public String onTaskDone(String str) throws JSONException
+						{
+							Toast.makeText(AddAnswerActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+							Intent intent = new Intent(getApplicationContext(), QuestionDetailActivity.class);
+							intent.putExtra("id of question", question_id);
+							startActivity(intent);
+							finish();
+							return null;
+						}
+					});
+					postRequestSend.execute();
+				}
 			}
 		});
 	}
