@@ -12,16 +12,18 @@
     android:gravity="center"
     tools:context="com.example.dam.thaparfeeds.LoginActivity">
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="UserName"
+        android:singleLine="true"
         android:id="@+id/username"
         android:textSize="30dp"/>
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:id="@+id/password"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:singleLine="true"
         android:inputType="textWebPassword"
         android:textSize="30dp"/>
     <Button

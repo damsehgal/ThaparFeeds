@@ -13,26 +13,32 @@
     tools:context="com.example.dam.thaparfeeds.SignUp">
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:hint="UserName"
+        android:singleLine="true"
         android:textSize="20sp"
         android:id="@+id/signup_username"
         android:layout_height="wrap_content"/>
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:singleLine="true"
         android:id="@+id/name_user"
         android:hint="Name"/>
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:hint="Password"
         android:id="@+id/signup_password"
+        android:inputType="textPassword"
+        android:singleLine="true"
         android:textSize="20sp"
         android:layout_height="wrap_content"/>
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:hint="Repeat Password"
+        android:inputType="textPassword"
         android:textSize="20sp"
+        android:singleLine="true"
         android:id="@+id/repeat_password"
         android:layout_height="wrap_content"/>
 
@@ -48,7 +54,8 @@
 
         android:layout_width="wrap_content"
         android:text="Already a member , plz login"
-        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textSize="10sp"
         android:layout_height="wrap_content"/>
 
     <Button
